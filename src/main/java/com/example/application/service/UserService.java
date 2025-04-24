@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,7 +15,7 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
 
-    @Transactional
+     @Transactional                 
     public User createUser(User user) {
         // 检查用户名是否已存在
         userRepository.findByUsername(user.getUsername())
@@ -26,9 +27,13 @@ public class UserService {
         user.setUpdateTime(LocalDateTime.now());
         return userRepository.save(user);
     }
-
+    @Transactional       
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
+    }                       
+    @Transactional
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     @Transactional

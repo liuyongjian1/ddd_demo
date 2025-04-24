@@ -1,4 +1,7 @@
-CREATE DATABASE IF NOT EXISTS ddd_demo;
+CREATE DATABASE IF NOT EXISTS ddd_demo
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_general_ci;
+
 USE ddd_demo;
 
 CREATE TABLE IF NOT EXISTS user (
@@ -8,4 +11,4 @@ CREATE TABLE IF NOT EXISTS user (
     email VARCHAR(100),
     create_time DATETIME NOT NULL,
     update_time DATETIME NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci; 

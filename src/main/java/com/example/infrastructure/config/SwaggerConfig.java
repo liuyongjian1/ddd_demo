@@ -4,12 +4,16 @@ import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springdoc.core.GroupedOpenApi;
 
 @Configuration
 public class SwaggerConfig {
+   @Value("${knife4j.enable}")
+   private boolean enable;
 
     @Bean
     public OpenAPI springShopOpenAPI() {
@@ -25,9 +29,14 @@ public class SwaggerConfig {
 
     @Bean
     public GroupedOpenApi publicApi() {
+        if (!enable) {
+            return null;
+        }
         return GroupedOpenApi.builder()
                 .group("public")
                 .pathsToMatch("/api/**")
                 .build();
     }
+   
+
 } 

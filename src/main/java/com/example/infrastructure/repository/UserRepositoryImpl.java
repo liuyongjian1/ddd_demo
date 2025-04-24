@@ -7,6 +7,7 @@ import com.example.infrastructure.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -20,13 +21,18 @@ public class UserRepositoryImpl implements UserRepository {
             userMapper.insert(user);
         } else {
             userMapper.updateById(user);
-        }
+    }
         return user;
     }
 
     @Override
     public Optional<User> findById(Long id) {
         return Optional.ofNullable(userMapper.selectById(id));
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userMapper.selectList(null);
     }
 
     @Override

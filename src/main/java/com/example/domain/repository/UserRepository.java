@@ -1,6 +1,8 @@
 package com.example.domain.repository;
 
 import com.example.domain.entity.User;
+
+import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository {
@@ -8,4 +10,5 @@ public interface UserRepository {
     Optional<User> findById(Long id);
     Optional<User> findByUsername(String username);
     void deleteById(Long id);
+    List<User> findAll();
 } 
